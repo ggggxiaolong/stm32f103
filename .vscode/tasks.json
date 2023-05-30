@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Build",
+			"command":"make",
+			"args": [],
+			"problemMatcher":[
+				"$armcc5"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Build && Update",
+			"command":"openocd",
+			"args": [
+				"-f",
+				"interface/cmsis-dap.cfg",
+				"-f",
+				"target/stm32f1x.cfg",
+				"-c",
+				"program build/demo.elf verify reset exit"
+			],
+			"problemMatcher":[
+				"$armcc5"
+			],
+			"group": "build",
+			"dependsOn":"Build"
+		}
+	]
+}
